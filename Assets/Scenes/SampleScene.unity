@@ -149,7 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c80c98e070258447bdd39aa09661b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dronePrefab: {fileID: 5563055473273005734, guid: 2052673be83344d93b843c656f8d90c4,
+  dronePrefab: {fileID: 855983833236230578, guid: ea7453c0abe824de9af28a9580192954,
+    type: 3}
+  eventPrefab: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
     type: 3}
   flightPlanIndex: 0
   displayTime: 0
@@ -343,3 +345,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1001 &1064896228
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_Name
+      value: toybear
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490537956834611611, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c, type: 3}

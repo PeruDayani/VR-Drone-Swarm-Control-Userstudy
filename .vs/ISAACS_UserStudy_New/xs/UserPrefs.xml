@@ -1,8 +1,11 @@
 ﻿<Properties StartupConfiguration="{2B961C42-AF3F-4E75-2D05-DB1F79EE2C4C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/userstudyController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/New_Scripts/cameraController3D.cs">
     <Files>
-      <File FileName="Assets/userstudyController.cs" Line="20" Column="65" />
-      <File FileName="Assets/droneController.cs" Line="60" Column="6" />
+      <File FileName="Assets/New_Scripts/userstudyController.cs" Line="138" Column="184" />
+      <File FileName="Assets/New_Scripts/GlobalVariables.cs" Line="13" Column="28" />
+      <File FileName="Assets/New_Scripts/droneController.cs" Line="108" Column="28" />
+      <File FileName="Assets/New_Scripts/cameraController2D.cs" Line="44" Column="18" />
+      <File FileName="Assets/New_Scripts/cameraController3D.cs" Line="67" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
