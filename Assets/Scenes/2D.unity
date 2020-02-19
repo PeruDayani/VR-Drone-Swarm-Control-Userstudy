@@ -157,8 +157,10 @@ MonoBehaviour:
     type: 3}
   flightPlanIndex: 0
   displayTime: 0
+  totalCollisionPrevented: 0
   totalCollisionCount: 0
-  plannedCollisionCount: 0
+  flightplanCollisionCount: 0
+  unplannedCollisionCount: 0
 --- !u!4 &656218210
 Transform:
   m_ObjectHideFlags: 0
@@ -187,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneSpeed: 2
   safeTime: 1
-  UI_Position: 1
-  UI_EnableArrows: 0
+  UI_Position: 0
+  UI_EnableArrows: 1
   UI_EnableWarningSphere: 0
   UI_EnableWarningDrone: 0
   UI_WarningBound: 2
@@ -379,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 2067502307371065013, guid: e6151bfe775424daf81bbf10059bcf23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.03
+      value: 11.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6151bfe775424daf81bbf10059bcf23, type: 3}
@@ -479,6 +481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642c84bc7d380488ba03ddf068b40e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomFunc: 0
+  transFunc: 0
+  clickFunc: 0
+  moveSpeed: 50
   camera: {fileID: 963194227}
 --- !u!1001 &1064896228
 PrefabInstance:

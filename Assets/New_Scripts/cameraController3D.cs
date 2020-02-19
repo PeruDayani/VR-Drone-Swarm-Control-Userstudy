@@ -5,47 +5,56 @@ using UnityEngine;
 public class cameraController3D : MonoBehaviour
 {
 
-    protected Transform xFormCamera;
-    protected Transform xFormParent;
+    // Global variables
+    public bool zoomFunc = false;
+    public bool rotateFunc = false;
+    public bool transFunc = false;
+    public bool clickFunc = false;
+    float moveSpeed = 10.0f;
 
-    protected Vector3 localRot;
-    protected float cameraDistance = 10f;
+    //rotateDrone variables
+    public float orbitSpeed = 10.0f;
 
-    public float mouseSensitivity = 4f;
-    //public float scrollSensitivity = 2f;
-    public float orbitSpeed = 10f;
-    //public float scrollSpeed = 6f;
-    //public bool cameraDisabled = false;
-    float moveSpeed = 50.0f; //for move
-
-
-
-    // Drone Interaction Variables
+    // clickDrone varables
     public Camera camera;
     private GameObject prevObj = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.xFormCamera = this.transform;
-        this.xFormParent = this.transform.parent;
-    }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetMouseButton(1))
+        if (rotateFunc)
         {
-            orbitSpeed = 10f;
-            transform.RotateAround(xFormParent.position, Vector3.up, Input.GetAxis("Mouse X") * orbitSpeed);
-            transform.RotateAround(xFormParent.position, Vector3.up, Input.GetAxis("Mouse Y") * orbitSpeed);
+            rotateCamera();
         }
 
-        orbitSpeed = 0;
-        moveCamera();
-        clickDrone();
+        if (transFunc)
+        {
+            moveCamera();
+        }
+
+        if (zoomFunc)
+        {
+            zoomCamera();
+        }
+
+        if (clickFunc)
+        {
+            clickDrone();
+        }
+
     }
 
+    void rotateCamera()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            float yMove = Input.GetAxis("Mouse Y") * orbitSpeed;
+            float xMove = Input.GetAxis("Mouse X") * orbitSpeed;
+
+            transform.Rotate(-yMove, xMove, 0, Space.Self);
+        }
+    }
 
     void clickDrone()
     {
@@ -103,21 +112,21 @@ public class cameraController3D : MonoBehaviour
         transform.Translate(p);
     }
 
+    void zoomCamera()
+    {
+        Vector3 p = new Vector3();
+        p += new Vector3(0, 0, Input.GetAxis("Mouse ScrollWheel") * 10f);
 
+        p = p * moveSpeed;
+        p = p * Time.deltaTime;
+        Vector3 newPosition = transform.position;
+        transform.Translate(p);
+    }
 
 
     private Vector3 GetMoveInput()
     {
         Vector3 p_Velocity = new Vector3();
-        //if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
-        //{
-        //    p_Velocity += new Vector3(0, 0, 1);
-        //}
-        //if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.S))
-        //{
-        //    p_Velocity += new Vector3(0, 0, -1);
-        //}
-        p_Velocity += new Vector3(0, 0, Input.GetAxis("Mouse ScrollWheel") * 5f);
 
         if (Input.GetKey(KeyCode.A))
         {

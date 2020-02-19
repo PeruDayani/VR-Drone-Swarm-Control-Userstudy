@@ -40,7 +40,7 @@ public class MapInteraction : MonoBehaviour
     void Start()
     {
         //Pivot assignment
-        pivot = GameObject.FindWithTag("Pivot");
+        //pivot = GameObject.FindWithTag("Pivot");
         originalScale = transform.localScale;
         minScale = Vector3.Scale(originalScale, new Vector3(0.1F, 0.1F, 0.1F));
         maxScale = Vector3.Scale(originalScale, new Vector3(10F, 10F, 10F));

@@ -6,7 +6,10 @@ public class cameraController2D : MonoBehaviour
 {
 
     // Camera Movement Variables
-    float moveSpeed = 50.0f;
+    public bool zoomFunc = false;
+    public bool transFunc = false;
+    public bool clickFunc = false;
+    public float moveSpeed = 50.0f;
 
     // Drone Interaction Variables
     public Camera camera;
@@ -14,8 +17,21 @@ public class cameraController2D : MonoBehaviour
 
     void Update()
     {
-        moveCamera();
-        clickDrone();
+
+        if (transFunc)
+        {
+            moveCamera();
+        }
+
+        if (zoomFunc)
+        {
+            zoomCamera();
+        }
+
+        if (clickFunc)
+        {
+            clickDrone();
+        }
     }
 
     void clickDrone()
@@ -63,6 +79,17 @@ public class cameraController2D : MonoBehaviour
         }
     }
 
+
+    void zoomCamera()
+    {
+        Vector3 p = new Vector3();
+        p += new Vector3(0, 0, Input.GetAxis("Mouse ScrollWheel") * 10f);
+
+        p = p * moveSpeed;
+        p = p * Time.deltaTime;
+        Vector3 newPosition = transform.position;
+        transform.Translate(p);
+    }
     void moveCamera()
     {
         Vector3 p = GetMoveInput();
@@ -76,8 +103,6 @@ public class cameraController2D : MonoBehaviour
     private Vector3 GetMoveInput()
     {
         Vector3 p_Velocity = new Vector3();
-
-        p_Velocity += new Vector3(0, 0, Input.GetAxis("Mouse ScrollWheel") * 10f);
 
         if (Input.GetKey(KeyCode.A))
         {

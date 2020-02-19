@@ -20,8 +20,10 @@ public class userstudyController : MonoBehaviour
     public int flightPlanIndex = 0;
 
     public float displayTime = 0;
+    public float totalCollisionPrevented = 0;
     public float totalCollisionCount = 0;
-    public float plannedCollisionCount = 0;
+    public float flightplanCollisionCount = 0;
+    public float unplannedCollisionCount = 0;
 
     private string csv_path = "Assets/Flightplans/flightplan_new.csv";
     private float userstudyStartTime;
@@ -144,6 +146,14 @@ public class userstudyController : MonoBehaviour
 
     }
 
+    public void AllSafe()
+    {
+        foreach(GameObject drone in GameObject.FindGameObjectsWithTag("drone"))
+        {
+            drone.GetComponent<droneController>().Click();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -174,6 +184,11 @@ public class userstudyController : MonoBehaviour
                     Debug.Log("All events created");
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AllSafe();
         }
     }
 }

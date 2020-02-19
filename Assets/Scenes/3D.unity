@@ -157,8 +157,10 @@ MonoBehaviour:
     type: 3}
   flightPlanIndex: 0
   displayTime: 0
+  totalCollisionPrevented: 0
   totalCollisionCount: 0
-  plannedCollisionCount: 0
+  flightplanCollisionCount: 0
+  unplannedCollisionCount: 0
 --- !u!4 &656218210
 Transform:
   m_ObjectHideFlags: 0
@@ -192,8 +194,8 @@ MonoBehaviour:
   UI_EnableWarningSphere: 0
   UI_EnableWarningDrone: 0
   UI_WarningBound: 2
-  OnCollision_Disappear: 1
-  OnCollision_RedBubble: 0
+  OnCollision_Disappear: 0
+  OnCollision_RedBubble: 1
   FlightDebugTrip: 0
   FlightDebugCol: 0
   FlightPlanDebug: 0
@@ -479,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 3402749983371836481, guid: 5fe05cfc30ae1cb449cd227754d634f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.06
       objectReference: {fileID: 0}
     - target: {fileID: 3402749983371836481, guid: 5fe05cfc30ae1cb449cd227754d634f8,
         type: 3}
@@ -489,7 +491,7 @@ PrefabInstance:
     - target: {fileID: 3402749983371836481, guid: 5fe05cfc30ae1cb449cd227754d634f8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8.03
       objectReference: {fileID: 0}
     - target: {fileID: 3402749983371836481, guid: 5fe05cfc30ae1cb449cd227754d634f8,
         type: 3}
@@ -530,6 +532,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113642663003434602, guid: 5fe05cfc30ae1cb449cd227754d634f8,
+        type: 3}
+      propertyPath: orbitSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113642663003434602, guid: 5fe05cfc30ae1cb449cd227754d634f8,
+        type: 3}
+      propertyPath: pivot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113642663003434602, guid: 5fe05cfc30ae1cb449cd227754d634f8,
+        type: 3}
+      propertyPath: rotateFunc
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113642663003434602, guid: 5fe05cfc30ae1cb449cd227754d634f8,
+        type: 3}
+      propertyPath: zoomFunc
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe05cfc30ae1cb449cd227754d634f8, type: 3}

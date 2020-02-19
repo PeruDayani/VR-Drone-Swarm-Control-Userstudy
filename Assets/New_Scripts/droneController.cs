@@ -14,9 +14,10 @@ public class droneController : MonoBehaviour
     public TextMeshPro positionZ;
 
     // Drone Materials
-    public Material redMaterial;
-    public Material blueMaterial;
-    public Material greenMaterial;
+    public Material collisionMaterial;
+    public Material hoverMaterial;
+    public Material safeMaterial;
+    public Material flashMaterial;
     public Material whiteMaterial;
     public Material prevMaterial;
 
@@ -40,6 +41,7 @@ public class droneController : MonoBehaviour
     [Header("Drone Variables")]
     public float speed = 2.0f;
     public float totalSafeTime = 100.0f;
+    public float flashTime = 2.0f;
 
     [Header("UI Features")]
     public bool UI_EnableArrows = true;
@@ -91,24 +93,28 @@ public class droneController : MonoBehaviour
 
     public void Click()
     {
+
+        if (collided)
+        {
+            return;
+        }
+
         startSafeTime = Time.time;
         safe = true; 
         prevMaterial = this.GetComponent<Renderer>().material;
-        this.GetComponent<Renderer>().material = greenMaterial;
+        this.GetComponent<Renderer>().material = safeMaterial;
         Debug.Log("Drone " + this.name + " safe.");
-
-
     }
     public void StartHover()
     {
-        if (safe)
+        if (safe || collided)
         {
             return;
         }
         if (hover == false)
         {
             prevMaterial = this.GetComponent<Renderer>().material;
-            this.GetComponent<Renderer>().material = blueMaterial;
+            this.GetComponent<Renderer>().material = hoverMaterial;
             Debug.Log("Start Hover");
         }
         hover = true;
@@ -132,6 +138,12 @@ public class droneController : MonoBehaviour
             {
                 //Collision prevented
                 Debug.LogFormat("SAFE Drone {0} and Drone {1}", this.droneID, other.gameObject.name);
+                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionPrevented += 0.5f;
+                GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
+
+                prevMaterial = flashMaterial;
+                this.GetComponent<Renderer>().material = flashMaterial;
+                Destroy(this.gameObject, flashTime);
             }
             // Preplanned Collision
             else if (other.gameObject.name == droneCollisionID.ToString())
@@ -142,7 +154,8 @@ public class droneController : MonoBehaviour
 
                 if (OnCollision_RedBubble)
                 {
-                    this.GetComponent<Renderer>().material = redMaterial;
+                    this.GetComponent<Renderer>().material = collisionMaterial;
+                    Destroy(this.gameObject, flashTime);
                 }
                 else
                 {
@@ -150,16 +163,16 @@ public class droneController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
 
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().plannedCollisionCount += 0.5f;
+                GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
                 GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
 
             }
             // Unplanned Collision
             else 
             {
-                this.GetComponent<Renderer>().material.color = Color.yellow;
+                this.GetComponent<Renderer>().material.color = Color.magenta;
                 //Debug.LogFormat("COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
+                GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
             }
         }
     }
@@ -215,7 +228,18 @@ public class droneController : MonoBehaviour
 
             // Update Debug Location
             positionX.text = "X: " + this.transform.position.x.ToString();
-            positionY.text = "Y: " + this.transform.position.y.ToString();
+
+            string helperY = this.transform.position.y.ToString();
+
+            if (helperY.Length < 4)
+            {
+                positionY.text = "Y: " + helperY;
+            }
+            else
+            {
+                positionY.text = "Y: " + helperY.Substring(0, 4);
+            }
+
             positionZ.text = "Z: " + this.transform.position.z.ToString();
 
         }
@@ -236,7 +260,7 @@ public class droneController : MonoBehaviour
         if (UI_EnableArrows)
         {
             Vector3 offsetRotation = new Vector3(0, 90, 0);
-            Vector3 offsetPosition = new Vector3(0.0f, -0.7f, 0.0f);
+            Vector3 offsetPosition = new Vector3(0.0f, -0.7f, 1.0f);
 
             arrow.transform.position = this.transform.position + offsetPosition;
             arrow.transform.LookAt(destPosition);

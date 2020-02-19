@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6568478679008813219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -337,9 +337,10 @@ MonoBehaviour:
   positionX: {fileID: 1091472593799492880}
   positionY: {fileID: 1091472594587719744}
   positionZ: {fileID: 1091472595294647110}
-  redMaterial: {fileID: 2100000, guid: 7a61f984147484033900008daaf0fac2, type: 2}
-  blueMaterial: {fileID: 2100000, guid: bf73fd9782ab94bb88751f3ce7075d26, type: 2}
-  greenMaterial: {fileID: 2100000, guid: dfcfc7b05d4434d16ba25dca58ca12af, type: 2}
+  collisionMaterial: {fileID: 2100000, guid: 7a61f984147484033900008daaf0fac2, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: bf73fd9782ab94bb88751f3ce7075d26, type: 2}
+  safeMaterial: {fileID: 2100000, guid: dfcfc7b05d4434d16ba25dca58ca12af, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 6179191a4f64f8c488209d25da7b4399, type: 2}
   whiteMaterial: {fileID: 2100000, guid: 7975cd506d8274d6a80625c8180e1e75, type: 2}
   prevMaterial: {fileID: 0}
   arrow: {fileID: 8352325661788926372}
@@ -352,7 +353,9 @@ MonoBehaviour:
   eventObj: {fileID: 0}
   speed: 2
   totalSafeTime: 2
+  flashTime: 2
   UI_EnableArrows: 1
+  UI_Position: 1
   OnCollision_Disappear: 1
   OnCollision_RedBubble: 0
   safe: 0
@@ -378,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1091472593799492887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -784,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1091472595294647109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1186,7 +1189,7 @@ PrefabInstance:
     - target: {fileID: 6587595790003770268, guid: 8987ee99333394cabba88812fb29da8c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.453
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 6587595790003770268, guid: 8987ee99333394cabba88812fb29da8c,
         type: 3}
