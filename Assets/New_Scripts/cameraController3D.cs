@@ -19,6 +19,14 @@ public class cameraController3D : MonoBehaviour
     public Camera camera;
     private GameObject prevObj = null;
 
+    // Logger
+    private MetricLogger Logger;
+
+    private void Start()
+    {
+        Logger = GameObject.FindGameObjectWithTag("GameController").GetComponent<MetricLogger>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +50,8 @@ public class cameraController3D : MonoBehaviour
         {
             clickDrone();
         }
+
+        Logger.AddCameraTransform(Time.time.ToString(), this.transform);
 
     }
 

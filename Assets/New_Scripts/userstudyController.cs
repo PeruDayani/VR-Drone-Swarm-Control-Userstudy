@@ -11,6 +11,7 @@ public class userstudyController : MonoBehaviour
 {
 
     public bool DebugEvent = true;
+    public string csv_path = "Assets/Flightplans/flightplan_new.csv";
     //public bool DebugCollision = true;
 
     public GameObject dronePrefab;
@@ -20,15 +21,27 @@ public class userstudyController : MonoBehaviour
     public int flightPlanIndex = 0;
 
     public float displayTime = 0;
+    public float userClicks = 0;
+
     public float totalCollisionPrevented = 0;
+
+    // total collisions
     public float totalCollisionCount = 0;
+
+    // black
+    public float missedCollisionCount = 0;
+
+    // red
     public float flightplanCollisionCount = 0;
+
+    // purple
     public float unplannedCollisionCount = 0;
 
-    private string csv_path = "Assets/Flightplans/flightplan_new.csv";
+    
     private float userstudyStartTime;
     private bool userstudyRunning = false;
 
+    private MetricLogger Logger;
 
     public class CsvRow
     {
@@ -137,7 +150,7 @@ public class userstudyController : MonoBehaviour
 
         GameObject drone = Instantiate(dronePrefab, startingPosition, Quaternion.identity);
         drone.name = eventData.droneID.ToString();
-        drone.GetComponent<droneController>().InitTask(startingPosition, endingPosition, eventData.startTime, eventData.droneID, eventData.eventID, eventData.collidesWithNum, eventVar);
+        drone.GetComponent<droneController>().InitTask(startingPosition, endingPosition, eventData.startTime, eventData.droneID, eventData.eventID, eventData.collidesWithNum, eventData.collidesAtTime, eventVar, Logger );
 
         if (DebugEvent)
         {
@@ -159,6 +172,9 @@ public class userstudyController : MonoBehaviour
     {
         ReadCsv();
         Debug.Log("CSV completely read");
+
+
+        Logger = this.GetComponent<MetricLogger>();
 
         userstudyStartTime = Time.time;
         userstudyRunning = true;
@@ -189,6 +205,10 @@ public class userstudyController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AllSafe();
+            userClicks += 1;
+            Logger.AddUserClick(Time.time.ToString(), userClicks.ToString());
         }
+
+        Logger.AddFlightStatus(Time.time.ToString(), csv_path, totalCollisionCount.ToString(), totalCollisionPrevented.ToString(), flightplanCollisionCount.ToString(), unplannedCollisionCount.ToString(), userClicks.ToString());
     }
 }

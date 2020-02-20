@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 656218210}
   - component: {fileID: 656218209}
   - component: {fileID: 656218211}
+  - component: {fileID: 656218212}
   m_Layer: 0
   m_Name: UserstudyController
   m_TagString: GameController
@@ -151,14 +152,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugEvent: 0
+  csv_path: Assets/Flightplans/flightplan30UAVs_plan3_v3.csv
   dronePrefab: {fileID: 855983833236230578, guid: ea7453c0abe824de9af28a9580192954,
     type: 3}
   eventPrefab: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
     type: 3}
   flightPlanIndex: 0
   displayTime: 0
+  userClicks: 0
   totalCollisionPrevented: 0
   totalCollisionCount: 0
+  missedCollisionCount: 0
   flightplanCollisionCount: 0
   unplannedCollisionCount: 0
 --- !u!4 &656218210
@@ -189,8 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneSpeed: 2
   safeTime: 1
-  UI_Position: 0
-  UI_EnableArrows: 1
+  UI_Position: 1
+  UI_EnableArrows: 0
   UI_EnableWarningSphere: 0
   UI_EnableWarningDrone: 0
   UI_WarningBound: 2
@@ -200,6 +204,19 @@ MonoBehaviour:
   FlightDebugCol: 0
   FlightPlanDebug: 0
   TextDebug: 0
+--- !u!114 &656218212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656218208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69650834ea2cb2e45943f0c273d94169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: testing
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

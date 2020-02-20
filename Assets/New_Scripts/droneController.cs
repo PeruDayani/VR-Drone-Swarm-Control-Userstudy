@@ -31,6 +31,7 @@ public class droneController : MonoBehaviour
     public int droneID;
     public int eventID;
     public int droneCollisionID;
+    public float droneCollisionTime;
     float startTime;
     bool eventActive = false;
     public GameObject eventObj;
@@ -60,8 +61,15 @@ public class droneController : MonoBehaviour
     public bool hover = false;
     public float startSafeTime = Mathf.Infinity;
 
-    public void InitTask(Vector3 initSpawnPosition, Vector3 initDestPosition, float initStartTime, int initDroneID, int initEventID, int initDroneCollisionID, GameObject initEventObj)
+    //Logger
+    private MetricLogger Logger;
+
+
+    public void InitTask(Vector3 initSpawnPosition, Vector3 initDestPosition, float initStartTime, int initDroneID, int initEventID, int initDroneCollisionID, float initDroneCollilisionTime ,GameObject initEventObj, MetricLogger initLogger)
     {
+        //Logger
+        Logger = initLogger;
+
         // Display Name
         droneDisplay.text = initDroneID.ToString();
 
@@ -72,6 +80,7 @@ public class droneController : MonoBehaviour
         droneID = initDroneID;
         eventID = initEventID;
         droneCollisionID = initDroneCollisionID;
+        droneCollisionTime = initDroneCollilisionTime;
         this.eventObj = initEventObj;
 
         if (droneCollisionID == -2)
@@ -128,29 +137,48 @@ public class droneController : MonoBehaviour
             Debug.Log("End Hover");
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
+        if (collided)
+        {
+            return;
+        }
+
         //Collision with a drone
         if (other.gameObject.tag == "drone")
         {
-            // Collision prevented
-            if (this.safe || other.gameObject.GetComponent<droneController>().safe)
+            // Collision prevented: not happening for now
+            if (false) // (this.safe || other.gameObject.GetComponent<droneController>().safe)
             {
                 //Collision prevented
                 Debug.LogFormat("SAFE Drone {0} and Drone {1}", this.droneID, other.gameObject.name);
                 GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionPrevented += 0.5f;
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
 
                 prevMaterial = flashMaterial;
                 this.GetComponent<Renderer>().material = flashMaterial;
                 Destroy(this.gameObject, flashTime);
+
+                // Preplanned collision saved
+                if (other.gameObject.name == droneCollisionID.ToString())
+                {
+                    Logger.AddDroneSaved(Time.time.ToString(), this.name, other.gameObject.name, "1");
+                    GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
+                }
+                else
+                {
+                    Logger.AddDroneSaved(Time.time.ToString(), this.name, other.gameObject.name, "0");
+                    GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
+
+                }
+
             }
             // Preplanned Collision
             else if (other.gameObject.name == droneCollisionID.ToString())
             {
 
-                Debug.LogFormat("COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
-                collided = true;
+                Debug.LogFormat("PREPLANNED COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
+                this.collided = true;
 
                 if (OnCollision_RedBubble)
                 {
@@ -166,13 +194,19 @@ public class droneController : MonoBehaviour
                 GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
                 GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
 
+                Logger.AddDroneCollision(Time.time.ToString(), this.name, other.gameObject.name, "1");
             }
             // Unplanned Collision
             else 
             {
                 this.GetComponent<Renderer>().material.color = Color.magenta;
-                //Debug.LogFormat("COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
+                Debug.LogFormat("UNPLANNED COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
+
                 GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
+                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
+
+                Logger.AddDroneCollision(Time.time.ToString(), this.name, other.gameObject.name, Vector3.Distance(this.transform.position, other.gameObject.transform.position).ToString() );
+
             }
         }
     }
@@ -223,7 +257,15 @@ public class droneController : MonoBehaviour
             if (fractionOfJourney > 0.999)
             {
                 //Debug.LogFormat("Drone {0} completed Event {1}", droneID, eventID);
-                Destroy(gameObject);
+                if (this.droneCollisionID != -2)
+                {
+                    this.GetComponent<Renderer>().material.color = Color.magenta;
+                    Destroy(this.gameObject, flashTime);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
 
             // Update Debug Location
@@ -267,5 +309,13 @@ public class droneController : MonoBehaviour
             arrow.transform.rotation *= Quaternion.Euler(offsetRotation);
         }
 
+        // Sanity Check
+        if(Time.time > droneCollisionTime + 1.0f && collided == false && droneCollisionID !=-2)
+        {
+            GameObject.Find("UserstudyController").GetComponent<userstudyController>().missedCollisionCount += 0.5f;
+            this.GetComponent<Renderer>().material.color = Color.black;
+            Logger.AddDroneCollision(Time.time.ToString(), this.name, "-", "-1");
+            collided = true;
+        }
     }
 }

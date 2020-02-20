@@ -64,7 +64,9 @@
   <ItemGroup>
     <Compile Include="Assets\Interaction3DVR.cs" />
     <Compile Include="Assets\MapInteraction.cs" />
+    <Compile Include="Assets\MetricLogger.cs" />
     <Compile Include="Assets\Navigate3DVR.cs" />
+    <Compile Include="Assets\New_Scripts\cameraConrollerVR.cs" />
     <Compile Include="Assets\New_Scripts\cameraController2D.cs" />
     <Compile Include="Assets\New_Scripts\cameraController3D.cs" />
     <Compile Include="Assets\New_Scripts\CsvRow.cs" />

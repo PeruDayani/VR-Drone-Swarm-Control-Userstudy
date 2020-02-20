@@ -15,6 +15,14 @@ public class cameraController2D : MonoBehaviour
     public Camera camera;
     private GameObject prevObj = null;
 
+    // Logger
+    private MetricLogger Logger;
+
+    private void Start()
+    {
+        Logger = GameObject.FindGameObjectWithTag("GameController").GetComponent<MetricLogger>();
+    }
+
     void Update()
     {
 
@@ -32,6 +40,8 @@ public class cameraController2D : MonoBehaviour
         {
             clickDrone();
         }
+
+        Logger.AddCameraTransform(Time.time.ToString(), this.transform);
     }
 
     void clickDrone()
@@ -79,7 +89,6 @@ public class cameraController2D : MonoBehaviour
         }
     }
 
-
     void zoomCamera()
     {
         Vector3 p = new Vector3();
@@ -90,6 +99,7 @@ public class cameraController2D : MonoBehaviour
         Vector3 newPosition = transform.position;
         transform.Translate(p);
     }
+
     void moveCamera()
     {
         Vector3 p = GetMoveInput();
