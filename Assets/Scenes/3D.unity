@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,18 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugEvent: 0
-  csv_path: Assets/Flightplans/flightplan10UAV_v1.csv
+  csv_path: Assets/Flightplans/flightplan30UAVs_plan1_v3.csv
   dronePrefab: {fileID: 855983833236230578, guid: ea7453c0abe824de9af28a9580192954,
     type: 3}
   eventPrefab: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
     type: 3}
   flightPlanIndex: 0
   displayTime: 0
+  userClicks: 0
   totalCollisionPrevented: 0
   totalCollisionCount: 0
+  missedCollisionCount: 0
   flightplanCollisionCount: 0
   unplannedCollisionCount: 0
-  userClicks: 0
 --- !u!4 &656218210
 Transform:
   m_ObjectHideFlags: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69650834ea2cb2e45943f0c273d94169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
