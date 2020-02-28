@@ -167,7 +167,7 @@ public class droneController : MonoBehaviour
                     Logger.AddDroneSaved(Time.time.ToString(), this.name, other.gameObject.name, "1");
                     userstudyController.plannedCollisions_Saved += 0.5f;
                     userstudyController.plannedCollisions += 0.5f;
-
+                    this.collided = true;
 
                     prevMaterial = flashMaterial;
                     this.GetComponent<Renderer>().material = flashMaterial;

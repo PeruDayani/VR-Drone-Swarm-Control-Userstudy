@@ -14,6 +14,8 @@ public class cameraController3D : MonoBehaviour
 
     //rotateDrone variables
     public float orbitSpeed = 10.0f;
+    public float yaw;
+    public float pitch;
 
     // clickDrone varables
     public Camera camera;
@@ -59,10 +61,9 @@ public class cameraController3D : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            float yMove = Input.GetAxis("Mouse Y") * orbitSpeed;
-            float xMove = Input.GetAxis("Mouse X") * orbitSpeed;
-
-            transform.Rotate(-yMove, xMove, 0, Space.Self);
+            this.yaw += orbitSpeed * Input.GetAxis("Mouse X");
+            this.pitch -= orbitSpeed * Input.GetAxis("Mouse Y");
+            this.transform.eulerAngles = new Vector3(this.pitch, this.yaw, 0f);
         }
     }
 
