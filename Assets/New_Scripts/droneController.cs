@@ -63,7 +63,7 @@ public class droneController : MonoBehaviour
 
     //Logger
     private MetricLogger Logger;
-
+    private userstudyController userstudyController;
 
     public void InitTask(Vector3 initSpawnPosition, Vector3 initDestPosition, float initStartTime, int initDroneID, int initEventID, int initDroneCollisionID, float initDroneCollilisionTime ,GameObject initEventObj, MetricLogger initLogger)
     {
@@ -140,36 +140,43 @@ public class droneController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // Upon ANY collision
+        userstudyController.totalCollisions += 0.5f;
+
         if (collided)
         {
             return;
         }
 
+
         //Collision with a drone
         if (other.gameObject.tag == "drone")
         {
             // Collision prevented: not happening for now
-            if (false) // (this.safe || other.gameObject.GetComponent<droneController>().safe)
+            if (this.safe || other.gameObject.GetComponent<droneController>().safe)
             {
-                //Collision prevented
-                Debug.LogFormat("SAFE Drone {0} and Drone {1}", this.droneID, other.gameObject.name);
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionPrevented += 0.5f;
-
-                prevMaterial = flashMaterial;
-                this.GetComponent<Renderer>().material = flashMaterial;
-                Destroy(this.gameObject, flashTime);
+                //GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionPrevented += 0.5f;
 
                 // Preplanned collision saved
                 if (other.gameObject.name == droneCollisionID.ToString())
                 {
+
+                    Debug.LogFormat("SAFE Drone {0} and Drone {1}", this.droneID, other.gameObject.name);
+
+                    // Successful saved a planned collision
                     Logger.AddDroneSaved(Time.time.ToString(), this.name, other.gameObject.name, "1");
-                    GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
+                    userstudyController.plannedCollisions_Saved += 0.5f;
+                    userstudyController.plannedCollisions += 0.5f;
+
+
+                    prevMaterial = flashMaterial;
+                    this.GetComponent<Renderer>().material = flashMaterial;
+                    Destroy(this.gameObject, flashTime);
                 }
                 else
                 {
                     Logger.AddDroneSaved(Time.time.ToString(), this.name, other.gameObject.name, "0");
-                    GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
-
+                    //GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
                 }
 
             }
@@ -191,19 +198,19 @@ public class droneController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
 
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().flightplanCollisionCount += 0.5f;
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
+                // A planned collision happening
+                userstudyController.plannedCollisions_Collided += 0.5f;
+                userstudyController.plannedCollisions += 0.5f;
 
                 Logger.AddDroneCollision(Time.time.ToString(), this.name, other.gameObject.name, "1");
             }
             // Unplanned Collision
             else 
             {
-                this.GetComponent<Renderer>().material.color = Color.magenta;
+                //this.GetComponent<Renderer>().material.color = Color.magenta;
                 Debug.LogFormat("UNPLANNED COLLISION Drone {0} with Drone {1}", this.droneID, other.gameObject.name);
 
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
-                GameObject.Find("UserstudyController").GetComponent<userstudyController>().totalCollisionCount += 0.5f;
+                //GameObject.Find("UserstudyController").GetComponent<userstudyController>().unplannedCollisionCount += 0.5f;
 
                 Logger.AddDroneCollision(Time.time.ToString(), this.name, other.gameObject.name, Vector3.Distance(this.transform.position, other.gameObject.transform.position).ToString() );
 
@@ -214,6 +221,8 @@ public class droneController : MonoBehaviour
     private void Start()
     {
         globalVariables = GameObject.Find("UserstudyController").GetComponent<GlobalVariables>();
+        userstudyController = GameObject.Find("UserstudyController").GetComponent<userstudyController>();
+
 
         this.speed = globalVariables.droneSpeed;
         this.totalSafeTime = globalVariables.safeTime;
@@ -309,7 +318,8 @@ public class droneController : MonoBehaviour
             arrow.transform.rotation *= Quaternion.Euler(offsetRotation);
         }
 
-        // Sanity Check
+
+        /**
         if(Time.time > droneCollisionTime + 1.0f && collided == false && droneCollisionID !=-2)
         {
             GameObject.Find("UserstudyController").GetComponent<userstudyController>().missedCollisionCount += 0.5f;
@@ -317,5 +327,6 @@ public class droneController : MonoBehaviour
             Logger.AddDroneCollision(Time.time.ToString(), this.name, "-", "-1");
             collided = true;
         }
+        **/  
     }
 }

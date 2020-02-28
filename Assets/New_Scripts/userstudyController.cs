@@ -23,19 +23,26 @@ public class userstudyController : MonoBehaviour
     public float displayTime = 0;
     public float userClicks = 0;
 
-    public float totalCollisionPrevented = 0;
+
+    public float plannedCollisions = 0;
+    public float plannedCollisions_Saved = 0;
+    public float plannedCollisions_Collided = 0;
+    public float totalCollisions = 0;
+
+
+    // public float totalCollisionPrevented = 0;
 
     // total collisions
-    public float totalCollisionCount = 0;
+    // public float totalCollisionCount = 0;
 
     // black
-    public float missedCollisionCount = 0;
+    // public float missedCollisionCount = 0;
 
     // red
-    public float flightplanCollisionCount = 0;
+    // public float flightplanCollisionCount = 0;
 
     // purple
-    public float unplannedCollisionCount = 0;
+    // public float unplannedCollisionCount = 0;
 
     
     private float userstudyStartTime;
@@ -209,6 +216,6 @@ public class userstudyController : MonoBehaviour
             Logger.AddUserClick(Time.time.ToString(), userClicks.ToString());
         }
 
-        Logger.AddFlightStatus(Time.time.ToString(), csv_path, totalCollisionCount.ToString(), totalCollisionPrevented.ToString(), flightplanCollisionCount.ToString(), unplannedCollisionCount.ToString(), userClicks.ToString());
+        Logger.AddFlightStatus(Time.time.ToString(), csv_path, plannedCollisions.ToString(), plannedCollisions_Saved.ToString(), plannedCollisions_Collided.ToString(), totalCollisions.ToString(), userClicks.ToString());
     }
 }

@@ -70,10 +70,10 @@ public class MetricLogger : MonoBehaviour
         string[] rowDataTemp = new string[7];
         rowDataTemp[0] = "Time";
         rowDataTemp[1] = "CSV Path";
-        rowDataTemp[2] = "Total Collisions";
-        rowDataTemp[3] = "Total Saved";
-        rowDataTemp[4] = "Total Collision Planned";
-        rowDataTemp[5] = "Total Collision Unplanned";
+        rowDataTemp[2] = "Total Planned Collisions";
+        rowDataTemp[3] = "Total Planned Collisions Saved";
+        rowDataTemp[4] = "Total Planned Collisions Collided";
+        rowDataTemp[5] = "Total Collisions";
         rowDataTemp[6] = "User Click Count";
         rowData_FlightStats.Add(rowDataTemp);
     }
@@ -158,15 +158,15 @@ public class MetricLogger : MonoBehaviour
         rowData_DroneSaved.Add(rowDataTemp);
     }
 
-    public void AddFlightStatus(string time, string csvPath, string totalCollisions, string totalSaved, string totalCollisionsPlanned, string totalCollisionsUnplanned, string userClickCount)
+    public void AddFlightStatus(string time, string csvPath, string totalPlannedCollisions, string totalPlannedCollisionsSaved, string totalPlannedCollisionsCollided, string totalCollisions, string userClickCount)
     {
         string[] rowDataTemp = new string[7];
         rowDataTemp[0] = time;
         rowDataTemp[1] = csvPath;
-        rowDataTemp[2] = totalCollisions;
-        rowDataTemp[3] = totalSaved;
-        rowDataTemp[4] = totalCollisionsPlanned;
-        rowDataTemp[5] = totalCollisionsUnplanned;
+        rowDataTemp[2] = totalPlannedCollisions;
+        rowDataTemp[3] = totalPlannedCollisionsSaved;
+        rowDataTemp[4] = totalPlannedCollisionsCollided;
+        rowDataTemp[5] = totalCollisions;
         rowDataTemp[6] = userClickCount;
         rowData_FlightStats.Add(rowDataTemp);
     }
