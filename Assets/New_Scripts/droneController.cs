@@ -140,8 +140,6 @@ public class droneController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Upon ANY collision
-        userstudyController.totalCollisions += 0.5f;
 
         if (collided)
         {
@@ -152,6 +150,9 @@ public class droneController : MonoBehaviour
         //Collision with a drone
         if (other.gameObject.tag == "drone")
         {
+            // Upon ANY collision
+            userstudyController.totalCollisions += 0.5f;
+
             // Collision prevented: not happening for now
             if (this.safe || other.gameObject.GetComponent<droneController>().safe)
             {

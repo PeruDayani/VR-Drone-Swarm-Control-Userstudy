@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
-  controlID: 113
+  controlID: 56
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 33
+  controlID: 57
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -383,9 +383,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b2380000
+      m_SelectedIDs: 4c360000
       m_LastClickedID: 0
-      m_ExpandedIDs: 40d5feffe4d8feff40f6ffff8cfaffff36fbffff
+      m_ExpandedIDs: 68fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.19105217, y: 0.080877066, z: -0.015803376, w: 0.97812015}
     speed: 2
-    m_Value: {x: 0.19398461, y: 0.08082885, z: -0.016045855, w: 0.97753733}
+    m_Value: {x: -0.19105218, y: -0.08087707, z: 0.015803376, w: -0.9781202}
   m_Size:
     m_Target: 27.416002
     speed: 2
@@ -573,20 +573,20 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/New_Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/New_Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ISAACS.DESKTOP-K8KBSI0\Desktop\Final UserStudy\ISAACS-Userstudy
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 34}
-    m_SelectedIDs: a2350000
-    m_LastClickedID: 13730
-    m_ExpandedIDs: 00000000a235000022400000324000007a4a0000cc500000ce500000d050000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 14480000
+    m_LastClickedID: 18452
+    m_ExpandedIDs: 0000000066350000e43f00002a4a0000f25a0000f45a0000f65a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -614,7 +614,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a2350000324000007a4a0000cc500000ce500000d0500000
+    m_ExpandedIDs: 0000000066350000e43f00002a4a0000f25a0000f45a0000f65a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
