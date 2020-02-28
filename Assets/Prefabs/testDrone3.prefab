@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6568478679008813219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   droneID: 0
   eventID: 0
   droneCollisionID: 0
+  droneCollisionTime: 0
   eventObj: {fileID: 0}
   speed: 2
   totalSafeTime: 2

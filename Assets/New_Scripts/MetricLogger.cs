@@ -8,7 +8,8 @@ using System;
 public class MetricLogger : MonoBehaviour
 {
     // Common Logs
-    public string name;
+    public string studyName;
+    public string saveToFolder;
 
     // In userstudyController
     private List<string[]> rowData_UserClick = new List<string[]>();
@@ -111,7 +112,7 @@ public class MetricLogger : MonoBehaviour
             sb.AppendLine(string.Join(delimiter, output[index]));
 
 
-        string filePath = Application.dataPath + "/CSV/" + csvName + ".csv";
+        string filePath = Application.dataPath + "/CSV/" + saveToFolder + "/" + csvName + ".csv";
 
         StreamWriter outStream = System.IO.File.CreateText(filePath);
         outStream.WriteLine(sb);
@@ -123,11 +124,11 @@ public class MetricLogger : MonoBehaviour
     void Save()
     {
         string currTime = Time.time.ToString();
-        SaveHelper(rowData_UserClick, name + "UserData");
-        SaveHelper(rowData_DroneCollisions, name + "DroneCollisionData");
-        SaveHelper(rowData_DroneSaved, name + "DroneSavedData");
-        SaveHelper(rowData_FlightStats, name + "FlightStatsData");
-        SaveHelper(rowData_CameraTransform, name + "CameraTransformData");
+        SaveHelper(rowData_UserClick, studyName + "UserData");
+        SaveHelper(rowData_DroneCollisions, studyName + "DroneCollisionData");
+        SaveHelper(rowData_DroneSaved, studyName + "DroneSavedData");
+        SaveHelper(rowData_FlightStats, studyName + "FlightStatsData");
+        SaveHelper(rowData_CameraTransform, studyName + "CameraTransformData");
     }
 
     public void AddUserClick(string time, string data)
