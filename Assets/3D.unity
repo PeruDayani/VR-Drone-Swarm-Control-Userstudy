@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugEvent: 0
-  csv_path: Assets/Flightplans/flightplan10UAVs_plan1_v3.csv
+  csv_path: Assets/Flightplans/flightplan30UAVs_plan1_v3.csv
   dronePrefab: {fileID: 855983833236230578, guid: ea7453c0abe824de9af28a9580192954,
     type: 3}
   eventPrefab: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69650834ea2cb2e45943f0c273d94169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  studyName: 3D_10UAV_PLAN1
-  saveToFolder: S1
+  studyName: S3_3D_30UAVs_plan1_v3.csv
+  saveToFolder: S3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

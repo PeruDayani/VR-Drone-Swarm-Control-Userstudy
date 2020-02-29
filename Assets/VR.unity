@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugEvent: 0
-  csv_path: Assets/Flightplans/flightplan10UAVs_plan3_v3.csv
+  csv_path: Assets/Flightplans/flightplan30UAVs_plan3_v3.csv
   dronePrefab: {fileID: 855983833236230578, guid: ea7453c0abe824de9af28a9580192954,
     type: 3}
   eventPrefab: {fileID: 490537956834971067, guid: d7cc35f532c1e4d8ca9a546fb0d22b0c,
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69650834ea2cb2e45943f0c273d94169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  studyName: VR_Test
-  saveToFolder: S1
+  studyName: S3_VR_30UAVs_plan3_v3
+  saveToFolder: S3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,20 +479,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 11.03
       objectReference: {fileID: 0}
-    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+    - target: {fileID: 2067502307371065013, guid: e6151bfe775424daf81bbf10059bcf23,
         type: 3}
-      propertyPath: UI_EnableArrows
-      value: 1
+      propertyPath: m_LocalScale.x
+      value: 3.5515199
       objectReference: {fileID: 0}
-    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+    - target: {fileID: 2067502307371065013, guid: e6151bfe775424daf81bbf10059bcf23,
         type: 3}
-      propertyPath: UI_Position
-      value: 0
+      propertyPath: m_LocalScale.y
+      value: 0.14797999
       objectReference: {fileID: 0}
-    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+    - target: {fileID: 2067502307371065013, guid: e6151bfe775424daf81bbf10059bcf23,
         type: 3}
-      propertyPath: OnCollision_RedBubble
-      value: 1
+      propertyPath: m_LocalScale.z
+      value: 3.5515199
       objectReference: {fileID: 0}
     - target: {fileID: 2067502306364191496, guid: e6151bfe775424daf81bbf10059bcf23,
         type: 3}
@@ -508,6 +508,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 2.7589798
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+        type: 3}
+      propertyPath: UI_EnableArrows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+        type: 3}
+      propertyPath: UI_Position
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067502306347653156, guid: e6151bfe775424daf81bbf10059bcf23,
+        type: 3}
+      propertyPath: OnCollision_RedBubble
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2067502306347653155, guid: e6151bfe775424daf81bbf10059bcf23, type: 3}
